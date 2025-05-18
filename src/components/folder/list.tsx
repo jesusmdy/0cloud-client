@@ -8,7 +8,7 @@ const FolderList: FC<{ folders: Array<Folder> }> = ({ folders }) => {
   const params = useParams();
   const isRoot = params.folderId === "0";
   if (isRoot) {
-    return filter(folders, (folder) => folder.parent_id === null).map((folder) => (
+    return filter(folders, (folder) => folder.parent_id === "root").map((folder) => (
       <FolderItem key={folder.id} folder={folder} />
     ));
   }

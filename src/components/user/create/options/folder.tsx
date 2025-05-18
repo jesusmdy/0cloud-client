@@ -13,6 +13,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useParams } from "next/navigation";
 import { api } from "@/api";
 import useSWR from "swr";
+import { useFolders } from "@/hooks/useFolders";
+import { useFileList } from "@/hooks/useFileList";
 
 interface FormValues {
   name: string
@@ -28,8 +30,8 @@ export const FolderOption = () => {
   const [isLoading, setIsLoading] = useState(false);
   const params = useParams()
   // revalidate
-  const { mutate } = useSWR(`/folders/${params.folderId}/contents`, api.get)
-
+  const { refetch: refetchFiles } = useFileList(params.folderId as string)
+  const { refetch: refetchFolders } = useFolders()
 
   const handleOpen = () => {
     setOpen(true);
@@ -44,7 +46,8 @@ export const FolderOption = () => {
           name: values.name,
           parent_id: folderId !== '0' ? folderId : null
         })
-        mutate()
+        refetchFiles()
+        refetchFolders()
         setOpen(false)
       } catch (error) {
         console.error(error)

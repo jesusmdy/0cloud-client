@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { User } from "@/types/user";
 
 const useGetUser = () => {
-  const { data, isLoading, error } = useSWR<{
+  const { data, isLoading, error, mutate } = useSWR<{
     data: User
   }>(
     `/user`,
@@ -12,6 +12,7 @@ const useGetUser = () => {
 
   return {
     data,
+    refetch: mutate,
     isLoading,
     error
   };

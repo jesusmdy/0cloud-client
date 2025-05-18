@@ -7,7 +7,22 @@ import { FolderIcon } from "@heroicons/react/24/solid";
 const FolderItem: FC<{ folder: Folder }> = ({ folder }) => {
   const router = useRouter();
   return (
-    <GridItem title={folder.name} onClick={() => router.push(`/drive/folder/${folder.id}`)} Icon={FolderIcon} />
+    <GridItem
+      title={folder.name}
+      onDoubleClick={() => router.push(`/drive/folder/${folder.id}`)}
+      Icon={FolderIcon}
+      options={[
+        {
+          label: "Folder info",
+          action() {}
+        },
+        {
+          label: "Delete",
+          topDivider: true,
+          action() {}
+        },
+      ]}
+    />
   );
 };
 

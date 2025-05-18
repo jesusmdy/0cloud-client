@@ -1,14 +1,26 @@
-import { Card } from "@mui/joy";
+"use client"
+
+import { Box, Card } from "@mui/joy";
 
 const AuthPageLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex w-screen h-screen">
-      <div className="w-full flex-1 bg-sky-900 flex items-center p-4">
-        <Card className="w-full md:w-1/2 lg:w-1/3 bg-white h-auto">
+    <Box className="flex w-screen h-screen">
+      <Box
+        sx={{
+          // bgcolor: theme => theme.palette.primary[50],
+          flex: 1,
+          p: 4,
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Card className="w-full md:w-1/2 lg:w-1/4 h-auto" variant="soft" sx={{ bgcolor: 'transparent' }}>
           {children}
         </Card>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
