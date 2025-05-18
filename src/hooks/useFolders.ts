@@ -5,14 +5,11 @@ import { api } from '@/api';
 
 const fetcher = (url: string) => api.get(url).then((res) => res.data)
 
-export function useFileList(folderId: string) {
+export function useFolders() {
   const { data, error, isLoading, mutate } = useSWR<{
-    folder: Folder;
-    parent: Folder | null;
-    folders: Array<Folder>;
-    files: Array<File>;
+    folders: Array<Folder>
   }>(
-    `/folders/${folderId}/contents`,
+    `/folders`,
     fetcher
   );
 

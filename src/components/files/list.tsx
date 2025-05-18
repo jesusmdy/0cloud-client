@@ -10,7 +10,7 @@ const FileList: FC<{ files: Array<File>, folder: Folder }> = ({ files, folder })
   const isRoot = params.folderId === "0";
 
   if (isRoot) {
-    return filter(files, (file) => file.parent_id === null).map((file) => (
+    return filter(files, (file) => file.parent_id === "root").map((file) => (
       <FileItem key={file.id} file={file} />
     ));
   }

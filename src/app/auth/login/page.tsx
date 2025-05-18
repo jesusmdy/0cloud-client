@@ -11,6 +11,8 @@ import { api } from "@/api";
 import { useRouter } from "next/navigation";
 import { Box, Snackbar, Typography } from "@mui/joy";
 import { LockClosedIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
+import JoyLink from "@mui/joy/Link"
 
 interface LoginForm {
   email: string
@@ -79,14 +81,13 @@ const LoginPage = () => {
               {errors.password && <Typography level="body-xs" className="text-red-500">{errors.password.message}</Typography>}
             </div>
           </div>
-          <Box display="flex" justifyContent="end">
-
+          <Box display="flex" justifyContent="space-between">
+            <JoyLink href="/auth/register" fontSize="sm" component={Link}>Create an account</JoyLink>
             <Button
               type="submit"
               color="primary"
               sx={{
                 bgcolor: theme => theme.colorSchemes.light.palette.primary[700],
-                width: "30%"
               }}
               loading={isLoading}
               disabled={!isValid}
